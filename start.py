@@ -1,5 +1,5 @@
-# Developed by: arafta_hindi_dubbed_webseries × Anujedits76
-# Telegram: @arafta_hindi_dubbed_webseries | @Anujedits76
+# Developed by: LastPerson07 × cantarella
+# Telegram: @cantarellabots | @THEUPDATEDGUYS
 import os
 import asyncio
 import random
@@ -20,8 +20,8 @@ import math
 from logger import LOGGER
 logger = LOGGER(__name__)
 SUBSCRIPTION = os.environ.get('SUBSCRIPTION', 'https://i.ibb.co/VWZ0RPxX/x.jpg')
-FREE_LIMIT_SIZE = 2 * 1024 * 1024 * 1024
-FREE_LIMIT_DAILY = 10
+FREE_LIMIT_SIZE = 02 * 1024 * 1024 * 1024
+FREE_LIMIT_DAILY = 100
 UPI_ID = os.environ.get("UPI_ID", "971916880@ybl")
 QR_CODE = os.environ.get("QR_CODE", "https://i.ibb.co/VWZ0RPxX/x.jpg")
 REACTIONS = [
@@ -36,13 +36,14 @@ REACTIONS = [
 ]
 
 
-dev_text = "👨‍💻 Mind Behind This Bot:\n• @arafta_hindi_dubbed_webseries\n• @Anujedits76"
+dev_text = "👨‍💻 Mind Behind This Bot:\n• @anujedits76\n• @arafta_hindi_dubbed_webseries"
 expected_dev_hash = "b9e63b7578bdec13f3cb3162fe5f5e93dccaba3bfd5c8ddacbb90ffdcdcce402"
-channels_text = "📢 Official Channels:\n• @arafta_hindi_dubbed_webseries\n• @Anujedits76\n\nStay updated for new features!"
+channels_text = "📢 Official Channels:\n• @arafta_hindi_dubbed_webseries\n• @arafta_hindi_dubbed_webseries\n\nStay updated for new features!"
 expected_channels_hash = "e19212e571bd0f6626450dd790029d392c0748c554d4b386a0c0752f4148d37d"
 
 if (
-    hashlib.sha256(dev_text.encode('utf-8')).hexdigest() != expectelib.sha256(channels_text.encode('utf-8')).hexdigest() != expected_channels_hash
+    hashlib.sha256(dev_text.encode('utf-8')).hexdigest() != expected_dev_hash or
+    hashlib.sha256(channels_text.encode('utf-8')).hexdigest() != expected_channels_hash
 ):
     raise Exception("Tampered developer info detected! Bot will not start. Fuck the code - crashing now.")
 
@@ -78,8 +79,8 @@ class script(object):
 """
     ABOUT_TXT = """<b>ℹ️ About This Bot</b>
 <blockquote><b>╭────[ 🧩 Technical Stack ]────⍟</b>
-<b>├⍟ 🤖 Bot Name : <a href=http://t.me/save_restricted_content_a_bot>Save restricted Content bot</a></b>
-<b>├⍟ 👨‍💻 Developer : <a href=https://t.me/arafta_hindi_dubbed_webseries>Arafta X Anuj</a></b>
+<b>├⍟ 🤖 Bot Name : <a href=http://t.me/ak_save_restricted_content_bot>Save Content</a></b>
+<b>├⍟ 👨‍💻 Developer : <a href=https://t.me/DmOwner>arafta_hindi_dubbed_webseries</a></b>
 <b>├⍟ 📚 Library : <a href='https://docs.pyrogram.org/'>Pyrogram Async</a></b>
 <b>├⍟ 🐍 Language : <a href='https://www.python.org/'>Python 3.11+</a></b>
 <b>├⍟ 🗄 Database : <a href='https://www.mongodb.com/'>MongoDB Atlas Cluster</a></b>
@@ -114,7 +115,7 @@ class script(object):
 <b>⏳ ETA:</b> <code>{eta}</code>
 </blockquote>
 """
-    CAPTION = """<b><a href="https://t.me/THEUPDATEDGUYS"></a></b>\n\n<b>⚜️ Powered By : <a href="https://t.me/arafta_hindi_dubbed_webseries">Arafta</a></b>"""
+    CAPTION = """<b><a href="https://t.me/THEUPDATEDGUYS"></a></b>\n\n<b>⚜️ Powered By : <a href="https://t.me/THEUPDATEDGUYS">THE UPDATED GUYS 😎</a></b>"""
     LIMIT_REACHED = """<b>🚫 Daily Limit Exceeded</b>
 <b>Your 10 free saves for today have been used.</b>
 <i>Quota resets automatically after 24 hours from first download.</i>
@@ -480,7 +481,7 @@ async def handle_restricted_content(client: Client, acc, message: Message, chat_
         elif msg_type == "Audio":
             await client.send_audio(message.chat.id, file, thumb=ph_path, caption=final_caption, progress=progress, progress_args=[message, "up"])
         elif msg_type == "Photo":
-            await client. send_photo(message.chat.id, file, caption=final_caption)
+            await client.send_photo(message.chat.id, file, caption=final_caption)
        
     except Exception as e:
          await smsg.edit(f"Upload Failed: {e}")
