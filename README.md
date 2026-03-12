@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/abhinai2244/SAVE-RESTRICT-BOT">
+  <a href="https://github.com/Anujofficial9719-eng/SAVE-RESTRICT-BOT">
     <img src="https://img.shields.io/badge/View-Original%20Repository-black?style=for-the-badge&logo=github">
   </a>
 </p>
