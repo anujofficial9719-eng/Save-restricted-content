@@ -1,0 +1,668 @@
+[2026-03-12 10:09:17,329 - INFO] - __main__ - Keep-alive server started.
+[2026-03-12 10:09:17,361 - WARNING] - werkzeug -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2026-03-12 10:09:17,367 - INFO] - werkzeug -  * Running on http://10.161.74.141:8080/ (Press CTRL+C to quit)
+[2026-03-12 10:09:28,280 - ERROR] - __main__ - DB stats failed: cannot open /etc/resolv.conf
+[2026-03-12 10:09:28,715 - INFO] - __main__ - Startup log sent.
+[2026-03-12 10:09:44,737 - ERROR] - pyrogram.dispatcher - cannot open /etc/resolv.conf
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1001, in read_resolv_conf
+    cm: contextlib.AbstractContextManager = open(f, encoding="utf-8")
+                                            ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/etc/resolv.conf'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 108, in _resolve_uri
+    results = _resolve(
+        "_" + self.__srv + "._tcp." + self.__fqdn, "SRV", lifetime=self.__connect_timeout
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 53, in _resolve
+    return resolver.resolve(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1572, in resolve
+    return get_default_resolver().resolve(
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1536, in get_default_resolver
+    reset_default_resolver()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1549, in reset_default_resolver
+    default_resolver = Resolver()
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 953, in __init__
+    self.read_resolv_conf(filename)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1004, in read_resolv_conf
+    raise NoResolverConfiguration(f"cannot open {f}")
+dns.resolver.NoResolverConfiguration: cannot open /etc/resolv.conf
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pyrogram/dispatcher.py", line 363, in handler_worker
+    await handler.callback(self.client, *args)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pyrogram/handlers/message_handler.py", line 154, in resolve_future_or_callback
+    await self.original_callback(client, message, *args)
+  File "/storage/emulated/0/SAVE-RESTRICT-BOT-V2-main/SAVE-RESTRICT-BOT-V2-main/bot.py", line 146, in new_user_log
+    if not await db.is_user_exist(user.id):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/emulated/0/SAVE-RESTRICT-BOT-V2-main/SAVE-RESTRICT-BOT-V2-main/database/db.py", line 27, in is_user_exist
+    user = await self.col.find_one({'id':int(id)})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/collection.py", line 1755, in find_one
+    for result in cursor.limit(-1):
+                  ~~~~~~~~~~~~^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/cursor.py", line 1289, in __next__
+    return self.next()
+           ~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/cursor.py", line 1265, in next
+    if len(self._data) or self._refresh():
+                          ~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/cursor.py", line 1213, in _refresh
+    self._send_message(q)
+    ~~~~~~~~~~~~~~~~~~^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/cursor.py", line 1108, in _send_message
+    response = client._run_operation(
+        operation, self._unpack_response, address=self._address
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1938, in _run_operation
+    return self._retryable_read(
+           ~~~~~~~~~~~~~~~~~~~~^
+        _cmd,
+        ^^^^^
+    ...<4 lines>...
+        operation=operation.name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2048, in _retryable_read
+    return self._retry_internal(
+           ~~~~~~~~~~~~~~~~~~~~^
+        func,
+        ^^^^^
+    ...<7 lines>...
+        operation_id=operation_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2014, in _retry_internal
+    ).run()
+      ~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2763, in run
+    return self._read() if self._is_read else self._write()
+           ~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2908, in _read
+    self._server = self._get_server()
+                   ~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2856, in _get_server
+    return self._client._select_server(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self._server_selector,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        operation_id=self._operation_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1820, in _select_server
+    topology = self._get_topology()
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1758, in _get_topology
+    self._resolve_srv()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 910, in _resolve_srv
+    res = uri_parser._parse_srv(
+        entity,
+    ...<6 lines>...
+        srv_max_hosts=srv_max_hosts,
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/uri_parser.py", line 168, in _parse_srv
+    nodes = dns_resolver.get_hosts()
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 148, in get_hosts
+    _, nodes = self._get_srv_response_and_hosts(True)
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 122, in _get_srv_response_and_hosts
+    results = self._resolve_uri(encapsulate_errors)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 116, in _resolve_uri
+    raise ConfigurationError(str(exc)) from exc
+pymongo.errors.ConfigurationError: cannot open /etc/resolv.conf
+[2026-03-12 10:09:44,901 - ERROR] - pyrogram.dispatcher - cannot open /etc/resolv.conf
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1001, in read_resolv_conf
+    cm: contextlib.AbstractContextManager = open(f, encoding="utf-8")
+                                            ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/etc/resolv.conf'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 108, in _resolve_uri
+    results = _resolve(
+        "_" + self.__srv + "._tcp." + self.__fqdn, "SRV", lifetime=self.__connect_timeout
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 53, in _resolve
+    return resolver.resolve(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1572, in resolve
+    return get_default_resolver().resolve(
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1536, in get_default_resolver
+    reset_default_resolver()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1549, in reset_default_resolver
+    default_resolver = Resolver()
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 953, in __init__
+    self.read_resolv_conf(filename)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1004, in read_resolv_conf
+    raise NoResolverConfiguration(f"cannot open {f}")
+dns.resolver.NoResolverConfiguration: cannot open /etc/resolv.conf
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pyrogram/dispatcher.py", line 363, in handler_worker
+    await handler.callback(self.client, *args)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pyrogram/handlers/message_handler.py", line 154, in resolve_future_or_callback
+    await self.original_callback(client, message, *args)
+  File "/storage/emulated/0/SAVE-RESTRICT-BOT-V2-main/SAVE-RESTRICT-BOT-V2-main/Rexbots/start.py", line 228, in send_start
+    if not await db.is_user_exist(message.from_user.id):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/emulated/0/SAVE-RESTRICT-BOT-V2-main/SAVE-RESTRICT-BOT-V2-main/database/db.py", line 27, in is_user_exist
+    user = await self.col.find_one({'id':int(id)})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/collection.py", line 1755, in find_one
+    for result in cursor.limit(-1):
+                  ~~~~~~~~~~~~^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/cursor.py", line 1289, in __next__
+    return self.next()
+           ~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/cursor.py", line 1265, in next
+    if len(self._data) or self._refresh():
+                          ~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/cursor.py", line 1213, in _refresh
+    self._send_message(q)
+    ~~~~~~~~~~~~~~~~~~^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/cursor.py", line 1108, in _send_message
+    response = client._run_operation(
+        operation, self._unpack_response, address=self._address
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1938, in _run_operation
+    return self._retryable_read(
+           ~~~~~~~~~~~~~~~~~~~~^
+        _cmd,
+        ^^^^^
+    ...<4 lines>...
+        operation=operation.name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2048, in _retryable_read
+    return self._retry_internal(
+           ~~~~~~~~~~~~~~~~~~~~^
+        func,
+        ^^^^^
+    ...<7 lines>...
+        operation_id=operation_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2014, in _retry_internal
+    ).run()
+      ~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2763, in run
+    return self._read() if self._is_read else self._write()
+           ~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2908, in _read
+    self._server = self._get_server()
+                   ~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2856, in _get_server
+    return self._client._select_server(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self._server_selector,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        operation_id=self._operation_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1820, in _select_server
+    topology = self._get_topology()
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1758, in _get_topology
+    self._resolve_srv()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 910, in _resolve_srv
+    res = uri_parser._parse_srv(
+        entity,
+    ...<6 lines>...
+        srv_max_hosts=srv_max_hosts,
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/uri_parser.py", line 168, in _parse_srv
+    nodes = dns_resolver.get_hosts()
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 148, in get_hosts
+    _, nodes = self._get_srv_response_and_hosts(True)
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 122, in _get_srv_response_and_hosts
+    results = self._resolve_uri(encapsulate_errors)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 116, in _resolve_uri
+    raise ConfigurationError(str(exc)) from exc
+pymongo.errors.ConfigurationError: cannot open /etc/resolv.conf
+[2026-03-12 10:14:11,004 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:12,114 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:13,123 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:14,129 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:14:14,137 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:15,146 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:16,154 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:17,159 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:14:17,168 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:18,177 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:19,191 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:20,197 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:14:20,201 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:21,231 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:22,246 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:23,257 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:14:23,274 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:24,300 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:25,316 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:26,329 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:14:26,340 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:27,359 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:28,386 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:29,402 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:14:29,414 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:30,430 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:31,450 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:32,462 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:14:32,468 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:33,485 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:34,504 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:35,514 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:14:35,521 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:36,536 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:37,549 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:38,557 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:14:38,561 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:14:39,576 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:10,012 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:11,044 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:12,064 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:13,074 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:15:13,080 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:14,094 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:15,110 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:16,121 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:15:16,128 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:17,142 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:18,157 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:19,166 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:15:19,174 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:20,188 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:21,200 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:22,210 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:15:22,216 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:23,230 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:24,247 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:25,257 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:15:25,264 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:26,278 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:27,295 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:28,306 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:15:28,312 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:29,327 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:30,341 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:31,349 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:15:31,358 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:32,373 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:33,385 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:34,394 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:15:34,399 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:35,413 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:36,428 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:37,439 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:15:37,446 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:38,464 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:39,479 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:40,489 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:15:40,495 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:41,508 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:42,525 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:43,538 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:15:43,543 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:44,557 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:45,572 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:46,586 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:15:46,592 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:47,606 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:48,621 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:49,630 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:15:49,634 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:50,650 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:51,665 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:52,675 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:15:52,681 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:53,698 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:54,716 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:55,725 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:15:55,730 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:56,748 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:57,767 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:58,777 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:15:58,786 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:15:59,802 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:00,818 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:01,829 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:16:01,834 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:02,848 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:03,860 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:04,869 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:16:04,875 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:05,889 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:06,903 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:07,918 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:16:07,923 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:31,555 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:32,571 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:33,584 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:34,594 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:16:34,601 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:35,619 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:36,634 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:37,646 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:16:37,653 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:38,671 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:39,692 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:40,705 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:16:40,711 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:41,723 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:42,738 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:43,746 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:16:43,755 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:44,767 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:45,783 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:46,794 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:16:46,802 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:47,816 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:48,830 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:49,841 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:16:49,845 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:50,860 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:51,876 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:52,886 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:16:52,894 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:53,908 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:54,924 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:55,937 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:16:55,941 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:56,952 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:57,964 - WARNING] - pyrogram.connection.connection - Unable to connect due to network issues: [Errno 101] Network is unreachable
+[2026-03-12 10:16:58,974 - WARNING] - pyrogram.connection.connection - Connection failed! Trying again...
+[2026-03-12 10:18:25,038 - INFO] - __main__ - Keep-alive server started.
+[2026-03-12 10:18:29,259 - ERROR] - __main__ - DB stats failed: cannot open /etc/resolv.conf
+[2026-03-12 10:18:29,494 - INFO] - __main__ - Startup log sent.
+[2026-03-12 10:20:36,363 - ERROR] - pyrogram.dispatcher - cannot open /etc/resolv.conf
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1001, in read_resolv_conf
+    cm: contextlib.AbstractContextManager = open(f, encoding="utf-8")
+                                            ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/etc/resolv.conf'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 108, in _resolve_uri
+    results = _resolve(
+        "_" + self.__srv + "._tcp." + self.__fqdn, "SRV", lifetime=self.__connect_timeout
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 53, in _resolve
+    return resolver.resolve(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1572, in resolve
+    return get_default_resolver().resolve(
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1536, in get_default_resolver
+    reset_default_resolver()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1549, in reset_default_resolver
+    default_resolver = Resolver()
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 953, in __init__
+    self.read_resolv_conf(filename)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1004, in read_resolv_conf
+    raise NoResolverConfiguration(f"cannot open {f}")
+dns.resolver.NoResolverConfiguration: cannot open /etc/resolv.conf
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pyrogram/dispatcher.py", line 363, in handler_worker
+    await handler.callback(self.client, *args)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pyrogram/handlers/message_handler.py", line 154, in resolve_future_or_callback
+    await self.original_callback(client, message, *args)
+  File "/storage/emulated/0/SAVE-RESTRICT-BOT-V2-main/SAVE-RESTRICT-BOT-V2-main/bot.py", line 146, in new_user_log
+    if not await db.is_user_exist(user.id):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/emulated/0/SAVE-RESTRICT-BOT-V2-main/SAVE-RESTRICT-BOT-V2-main/database/db.py", line 27, in is_user_exist
+    user = await self.col.find_one({'id':int(id)})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/collection.py", line 1755, in find_one
+    for result in cursor.limit(-1):
+                  ~~~~~~~~~~~~^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/cursor.py", line 1289, in __next__
+    return self.next()
+           ~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/cursor.py", line 1265, in next
+    if len(self._data) or self._refresh():
+                          ~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/cursor.py", line 1213, in _refresh
+    self._send_message(q)
+    ~~~~~~~~~~~~~~~~~~^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/cursor.py", line 1108, in _send_message
+    response = client._run_operation(
+        operation, self._unpack_response, address=self._address
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1938, in _run_operation
+    return self._retryable_read(
+           ~~~~~~~~~~~~~~~~~~~~^
+        _cmd,
+        ^^^^^
+    ...<4 lines>...
+        operation=operation.name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2048, in _retryable_read
+    return self._retry_internal(
+           ~~~~~~~~~~~~~~~~~~~~^
+        func,
+        ^^^^^
+    ...<7 lines>...
+        operation_id=operation_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2014, in _retry_internal
+    ).run()
+      ~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2763, in run
+    return self._read() if self._is_read else self._write()
+           ~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2908, in _read
+    self._server = self._get_server()
+                   ~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2856, in _get_server
+    return self._client._select_server(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self._server_selector,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        operation_id=self._operation_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1820, in _select_server
+    topology = self._get_topology()
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1758, in _get_topology
+    self._resolve_srv()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 910, in _resolve_srv
+    res = uri_parser._parse_srv(
+        entity,
+    ...<6 lines>...
+        srv_max_hosts=srv_max_hosts,
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/uri_parser.py", line 168, in _parse_srv
+    nodes = dns_resolver.get_hosts()
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 148, in get_hosts
+    _, nodes = self._get_srv_response_and_hosts(True)
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 122, in _get_srv_response_and_hosts
+    results = self._resolve_uri(encapsulate_errors)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 116, in _resolve_uri
+    raise ConfigurationError(str(exc)) from exc
+pymongo.errors.ConfigurationError: cannot open /etc/resolv.conf
+[2026-03-12 10:20:36,516 - ERROR] - pyrogram.dispatcher - cannot open /etc/resolv.conf
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1001, in read_resolv_conf
+    cm: contextlib.AbstractContextManager = open(f, encoding="utf-8")
+                                            ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/etc/resolv.conf'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 108, in _resolve_uri
+    results = _resolve(
+        "_" + self.__srv + "._tcp." + self.__fqdn, "SRV", lifetime=self.__connect_timeout
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 53, in _resolve
+    return resolver.resolve(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1572, in resolve
+    return get_default_resolver().resolve(
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1536, in get_default_resolver
+    reset_default_resolver()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1549, in reset_default_resolver
+    default_resolver = Resolver()
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 953, in __init__
+    self.read_resolv_conf(filename)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/dns/resolver.py", line 1004, in read_resolv_conf
+    raise NoResolverConfiguration(f"cannot open {f}")
+dns.resolver.NoResolverConfiguration: cannot open /etc/resolv.conf
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pyrogram/dispatcher.py", line 363, in handler_worker
+    await handler.callback(self.client, *args)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pyrogram/handlers/message_handler.py", line 154, in resolve_future_or_callback
+    await self.original_callback(client, message, *args)
+  File "/storage/emulated/0/SAVE-RESTRICT-BOT-V2-main/SAVE-RESTRICT-BOT-V2-main/Rexbots/start.py", line 228, in send_start
+    if not await db.is_user_exist(message.from_user.id):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/emulated/0/SAVE-RESTRICT-BOT-V2-main/SAVE-RESTRICT-BOT-V2-main/database/db.py", line 27, in is_user_exist
+    user = await self.col.find_one({'id':int(id)})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/collection.py", line 1755, in find_one
+    for result in cursor.limit(-1):
+                  ~~~~~~~~~~~~^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/cursor.py", line 1289, in __next__
+    return self.next()
+           ~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/cursor.py", line 1265, in next
+    if len(self._data) or self._refresh():
+                          ~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/cursor.py", line 1213, in _refresh
+    self._send_message(q)
+    ~~~~~~~~~~~~~~~~~~^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/cursor.py", line 1108, in _send_message
+    response = client._run_operation(
+        operation, self._unpack_response, address=self._address
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1938, in _run_operation
+    return self._retryable_read(
+           ~~~~~~~~~~~~~~~~~~~~^
+        _cmd,
+        ^^^^^
+    ...<4 lines>...
+        operation=operation.name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2048, in _retryable_read
+    return self._retry_internal(
+           ~~~~~~~~~~~~~~~~~~~~^
+        func,
+        ^^^^^
+    ...<7 lines>...
+        operation_id=operation_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2014, in _retry_internal
+    ).run()
+      ~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2763, in run
+    return self._read() if self._is_read else self._write()
+           ~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2908, in _read
+    self._server = self._get_server()
+                   ~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2856, in _get_server
+    return self._client._select_server(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self._server_selector,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        operation_id=self._operation_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1820, in _select_server
+    topology = self._get_topology()
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1758, in _get_topology
+    self._resolve_srv()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 910, in _resolve_srv
+    res = uri_parser._parse_srv(
+        entity,
+    ...<6 lines>...
+        srv_max_hosts=srv_max_hosts,
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/uri_parser.py", line 168, in _parse_srv
+    nodes = dns_resolver.get_hosts()
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 148, in get_hosts
+    _, nodes = self._get_srv_response_and_hosts(True)
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 122, in _get_srv_response_and_hosts
+    results = self._resolve_uri(encapsulate_errors)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/pymongo/synchronous/srv_resolver.py", line 116, in _resolve_uri
+    raise ConfigurationError(str(exc)) from exc
+pymongo.errors.ConfigurationError: cannot open /etc/resolv.conf
